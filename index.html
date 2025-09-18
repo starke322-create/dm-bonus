@@ -188,22 +188,6 @@
       </div>
       <div class="input-row">
         <div class="input-col">
-          <label for="top15hsi">Top 15 HSI</label>
-          <select id="top15hsi" required>
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-          <div class="input-col">
-          <label for="top15tfb">Top 15 TFB</label>
-          <select id="top15tfb" required>
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
-        </div>
-      </div>
-      <div class="input-row">
-        <div class="input-col">
           <label for="tlife">T-Life Below 65%</label>
           <select id="tlife" required>
             <option value="no">No</option>
@@ -379,8 +363,6 @@
       document.getElementById('tfb').value = '100';
       document.getElementById('districtcslb').value = '3rd';
       document.getElementById('tfb%').value = '90-124.99';
-      document.getElementById('top15hsi').value = 'no';
-      document.getElementById('top15tfb').value = 'no';
       document.getElementById('tlife').value = 'no';
       document.getElementById('socialmedia').value = '0.5-1post/100';
       document.getElementById('perfectpunch').value = 'yes';
@@ -399,8 +381,6 @@
       document.getElementById('accgp').value = '125';
       document.getElementById('districtcslb').value = '1st';
       document.getElementById('tfb%').value = '125+';
-      document.getElementById('top15hsi').value = 'yes';
-      document.getElementById('top15tfb').value = 'yes';
       document.getElementById('tlife').value = 'no';
       document.getElementById('socialmedia').value = '1post/100';
       document.getElementById('perfectpunch').value = 'yes';
@@ -423,8 +403,6 @@
       const perfectpunch = document.getElementById('perfectpunch').value;
       const districtcslb = document.getElementById('districtcslb').value;
       const mvpaward = document.getElementById('mvpaward').value;
-      const top15tfb = document.getElementById('top15tfb').value;
-      const top15hsi = document.getElementById('top15hsi').value;
       const tlife = document.getElementById('tlife').value;
       const worldclass = document.getElementById('worldclass').value;
       const achieveall = document.getElementById('achieveall').value;
@@ -494,14 +472,6 @@
       // MVP award
       const mvpPayout = mvpBonus[mvpaward] || 0;
 
-      // Top 15 TFB
-      const tfbPerc = (top15tfb === "yes") ? 0.05 : 0;
-      const tfbBonus = totalAdj * tfbPerc;
-
-      // Top 15 HSI
-      const hsiPerc = (top15hsi === "yes") ? 0.05 : 0;
-      const hsiBonus = totalAdj * hsiPerc;
-
       // Tlife
       const tlifePerc = (tlife === "yes") ? -0.10 : 0;
       const tlifeBonus = totalAdj * tlifePerc;
@@ -527,8 +497,6 @@
         ["Accessories", `$${accgpPayout}`, `${accgp}%`, `$${accgpAdj.toFixed(2)}`],
         ["TFB", `$${tfbPayout}`, `${tfb}%`, `$${tfbAdj.toFixed(2)}`],
         ["CSLB", `${(cslbPerc*100).toFixed(0)}%`, `${districtcslb}`, `$${cslbPayout.toFixed(2)}`],
-        ["Top 15 TFB", "5%", `${top15tfb}`, `$${tfbBonus.toFixed(2)}`],
-        ["Top 15 HSI", "5%", `${top15hsi}`, `$${hsiBonus.toFixed(2)}`],
         ["T-Life", "-10%", `${tlife}`, `$${tlifeBonus.toFixed(2)}`],
         ["TFB %", `${(tfbPercentPerc*100).toFixed(0)}%`, `${tfbPercent}`, `$${tfbPercentBonus.toFixed(2)}`],
         ["Social Media", `${(socialPerc*100).toFixed(0)}%`, `${socialmedia}`, `$${socialBonus.toFixed(2)}`],
@@ -537,7 +505,7 @@
         ["MVP Award", `$${mvpPayout}`, `${mvpaward}`, `$${mvpPayout.toFixed(2)}`]
       ];
 
-      const totalBonus = cslbPayout + tfbBonus + hsiBonus + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus + tfbPercentBonus;
+      const totalBonus = cslbPayout + wcBonus + aaBonus + mvpPayout + tlifeBonus + socialBonus + tfbPercentBonus;
       const totalPayout = totalAdj + totalBonus;
 
       breakdownRows.push(["TOTAL", "", "", `$${totalPayout.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`]);
