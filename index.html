@@ -136,7 +136,7 @@
       <div class="input-row">
         <div class="input-col">
           <label for="gp">Trending NET District GP</label>
-          <input type="number" id="gp" required min="0" step="1" placeholder="e.g. 30000 for $30,000">
+          <input type="number" id="gp" required min="0" step="1" placeholder="e.g. 300000 for $300,000">
         </div>
         <div class="input-col">
           <label for="cpv">CPV % Attained</label>
@@ -235,9 +235,9 @@
           <select id="mvpaward" required>
             <option value="no">No</option>
             <option value="1st">1st</option>
-            <option value="2nd-5th">2nd-5th</option>
-            <option value="6th-10th">6th-10th</option>
-            <option value="11th-15th">11th-15th</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
           </select>
         </div>
       </div>
@@ -329,10 +329,10 @@
     // MVP award bonus lookup
     const mvpBonus = {
       "No": 0,
-      "1st": 600,
-      "2nd-5th": 400,
-      "6th-10th": 300,
-      "11th-15th": 200
+      "1st": 900,
+      "2nd": 750,
+      "3rd": 600,
+      "4th": 450
     };
 
     const socialMediaBonusPerc = {
@@ -348,8 +348,8 @@
     };
     
     // Fixed amounts for World Class and Achieve All
-    const worldClassBonus = 500;
-    const achieveAllBonus = 300;
+    const worldClassBonus = 750;
+    const achieveAllBonus = 500;
 
     function vlookupPayout(gp, table) {
       for (let i = 0; i < table.length; i++) {
